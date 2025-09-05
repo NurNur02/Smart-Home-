@@ -1,78 +1,441 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NN</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      text-align: center;
-    }
-    header {
-      background: #d7b77a;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .phone {
-      font-weight: bold;
-    }
-    .NU {
-      background: #e8d6ab;
-      margin: 15px auto;
-      padding: 40px;
-      max-width: 900px;
-      border-radius: 10px;
-    }
-    .circle-row {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .nur {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #d7b77a;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #d7b77a;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бизнес-решения</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #f9f9f9;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        
+        .descriptor {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .descriptor h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .descriptor p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        
+        .photoliceo {
+            background: rgb(180, 168, 155);
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .image-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-weight: bold;
+        }
+        
+        .round {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        
+        .square {
+            border-radius: 10px;
+        }
+        
+        
+        .promo {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+        
+        .countdown {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        
+        .triggers {
+            background: white;
+        }
+        
+        .triggers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .trigger-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .trigger-icon {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        
+        .order-form {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+       
+        .cta {
+            background: var(--accent);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .cta h2 {
+            margin-bottom: 20px;
+        }
+        
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: #c0392b;
+        }
+        
+        
+        .workflow {
+            background: white;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+      
+        
+        
+        @media (max-width: 768px) {
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 30px;
+            }
+            
+            .descriptor h1 {
+                font-size: 28px;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div>rem mollitia eligendi recusandae eaque distinctio sint incidunt odit quas architecto, </div>
-    <div class="phone">8‑800‑000‑000</div>
-  </header>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>Nur</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <div class="NU">rem mollitia eligendi recusandae eaque distinctio sint incidunt odit quas architecto, </div>
-  <div class="NU">elit. Deserunt officiis facilis voluptates unde ad, tempore aliquam! Nemo, ullam eum!</div>
-  <div class="NU">Lorem ipsum dolor sit, amet consectetur adipisicing </div>
-  <div class="NU">
-    <div class="circle-row">
-      <div class="nur"></div>
-      <div class="nur"></div>
-      <div class="nur"></div>
-      <div class="nur"></div>
-      <div class="nur"></div>
-    </div>
-  </div>
-  <div class="NU">8-747-758-59-75</div>
-  <div class="NU">Контакты rem mollitia eligendi recusandae eaque distinctio sint incidunt odit quas architecto, </div>
-  <div class="NU">rem mollitia eligendi recusandae eaque distinctio sint incidunt odit quas architecto, </div>
+    
+    <section class="descriptor">
+        <div class="container">
+            <h1>aperiam reiciendis asperiores libero a non numquam sequi!</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, </p>
+        </div>
+    </section>
 
-  <button>rem mollitia eligendi recusandae eaque distinctio sint incidunt odit quas architecto, </button>
+   
+    <section class="photoliceo">
+        <div class="container">
+            <div class="section-title">
+                <h2>libero a non numquam sequi!</h2>
+            </div>
+            <div class="image-grid">
+                <div class="image-item round">
+                    <div><img src="8786dc6475ac9d4e2a4569da622f45dd.jpg"  ></div>
+                </div>
+                <div class="image-item square">
+                    <div><img src="0842fc94eee02bc37c86554824f289f0.jpg"  ></div>
+                </div>
+                <div class="image-item round">
+                    <div><img src="image-no-bg-preview (carve.photos) (1).png"  ></div>
+                </div>
+                <div class="image-item square">
+                    <div><img src="8786dc6475ac9d4e2a4569da622f45dd.jpg"  ></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="promo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Специальное предложение</h2>
+            </div>
+            <p>Только до конца месяца получите скидку 20% на все наши услуги</p>
+            
+            <a href="#order" class="btn">Воспользоваться акцией</a>
+        
+    </section>
+
+    
+
+    <section id="order">
+        <div class="container">
+            
+                <h2>Форма заказа</h2>
+            
+            <div class="order-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Услуга</label>
+                        <select id="service" required>
+                            <option value="">Выберите услугу</option>
+                            <option value="consulting">Консультация</option>
+                            <option value="development">Разработка</option>
+                            <option value="support">Поддержка</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+
+    
+    <section class="cta">
+        <div class="container">
+            <h2>Готовы начать работать с нами?</h2>
+            <p>Оставьте заявку и получите бесплатную консультацию</p>
+        </div>
+    </section>
+
+    
+    <section style="text-align: center; background: var(--light); padding: 30px 0;">
+        
+            <a href="#order" class="btn">Оставить заявку</a>
+        
+    </section>
+
+    
+    <section class="workflow">
+        <div class="container">
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                  
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                   
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
